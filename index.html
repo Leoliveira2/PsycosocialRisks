@@ -1,63 +1,88 @@
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Checklist de Riscos Psicossociais</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        h1 { text-align: center; color: #2C3E50; }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
-        th, td { border: 1px solid #bbb; padding: 8px; text-align: left; }
-        th { background-color: #2C3E50; color: white; }
-        td.center { text-align: center; }
-        .category { background-color: #ecf0f1; font-weight: bold; }
-    </style>
+  <meta charset="UTF-8">
+  <title>Avaliação de Riscos Psicossociais</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f4f4f9; }
+    select, button { padding: 8px; margin: 10px 0; }
+    .questionario, #dashboard { display: none; margin-top: 20px; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
+    h2 { color: #333; }
+    label { display: block; margin: 10px 0; }
+  </style>
 </head>
 <body>
-    <h1>Checklist - Avaliação de Riscos Psicossociais</h1>
-    <form>
-        <table>
-            <tr>
-                <th>Item</th>
-                <th>Pergunta</th>
-                <th>Sim</th>
-                <th>Não</th>
-                <th>Parcial</th>
-                <th>N/A</th>
-            </tr>
-            <tr class="category"><td colspan="6">1. Identificação de Perigos</td></tr>
-<tr><td>1</td><td>Exigência excessiva de produtividade?</td><td class="center"><input type="radio" name="q1" value="Sim"></td><td class="center"><input type="radio" name="q1" value="Não"></td><td class="center"><input type="radio" name="q1" value="Parcial"></td><td class="center"><input type="radio" name="q1" value="NA"></td></tr>
-<tr><td>2</td><td>Metas inalcançáveis ou mal definidas?</td><td class="center"><input type="radio" name="q2" value="Sim"></td><td class="center"><input type="radio" name="q2" value="Não"></td><td class="center"><input type="radio" name="q2" value="Parcial"></td><td class="center"><input type="radio" name="q2" value="NA"></td></tr>
-<tr><td>3</td><td>Pressão que afeta a saúde mental?</td><td class="center"><input type="radio" name="q3" value="Sim"></td><td class="center"><input type="radio" name="q3" value="Não"></td><td class="center"><input type="radio" name="q3" value="Parcial"></td><td class="center"><input type="radio" name="q3" value="NA"></td></tr>
-<tr><td>4</td><td>Ocorrência de assédio moral, sexual ou discriminação?</td><td class="center"><input type="radio" name="q4" value="Sim"></td><td class="center"><input type="radio" name="q4" value="Não"></td><td class="center"><input type="radio" name="q4" value="Parcial"></td><td class="center"><input type="radio" name="q4" value="NA"></td></tr>
-<tr><td>5</td><td>Clareza sobre responsabilidades?</td><td class="center"><input type="radio" name="q5" value="Sim"></td><td class="center"><input type="radio" name="q5" value="Não"></td><td class="center"><input type="radio" name="q5" value="Parcial"></td><td class="center"><input type="radio" name="q5" value="NA"></td></tr>
-<tr><td>6</td><td>Conflitos interpessoais ou hierárquicos?</td><td class="center"><input type="radio" name="q6" value="Sim"></td><td class="center"><input type="radio" name="q6" value="Não"></td><td class="center"><input type="radio" name="q6" value="Parcial"></td><td class="center"><input type="radio" name="q6" value="NA"></td></tr>
-<tr><td>7</td><td>Sentimento de isolamento ou exclusão?</td><td class="center"><input type="radio" name="q7" value="Sim"></td><td class="center"><input type="radio" name="q7" value="Não"></td><td class="center"><input type="radio" name="q7" value="Parcial"></td><td class="center"><input type="radio" name="q7" value="NA"></td></tr>
-<tr><td>8</td><td>Desequilíbrio entre esforço e recompensa?</td><td class="center"><input type="radio" name="q8" value="Sim"></td><td class="center"><input type="radio" name="q8" value="Não"></td><td class="center"><input type="radio" name="q8" value="Parcial"></td><td class="center"><input type="radio" name="q8" value="NA"></td></tr>
-<tr class="category"><td colspan="6">2. Condições de Trabalho</td></tr>
-<tr><td>9</td><td>Avaliação ergonômica preliminar com foco psicossocial realizada?</td><td class="center"><input type="radio" name="q9" value="Sim"></td><td class="center"><input type="radio" name="q9" value="Não"></td><td class="center"><input type="radio" name="q9" value="Parcial"></td><td class="center"><input type="radio" name="q9" value="NA"></td></tr>
-<tr><td>10</td><td>Ritmo de trabalho e exigência de tempo são adequados?</td><td class="center"><input type="radio" name="q10" value="Sim"></td><td class="center"><input type="radio" name="q10" value="Não"></td><td class="center"><input type="radio" name="q10" value="Parcial"></td><td class="center"><input type="radio" name="q10" value="NA"></td></tr>
-<tr><td>11</td><td>Existem pausas para recuperação psicofisiológica?</td><td class="center"><input type="radio" name="q11" value="Sim"></td><td class="center"><input type="radio" name="q11" value="Não"></td><td class="center"><input type="radio" name="q11" value="Parcial"></td><td class="center"><input type="radio" name="q11" value="NA"></td></tr>
-<tr><td>12</td><td>Ambiente físico favorece conforto e bem-estar?</td><td class="center"><input type="radio" name="q12" value="Sim"></td><td class="center"><input type="radio" name="q12" value="Não"></td><td class="center"><input type="radio" name="q12" value="Parcial"></td><td class="center"><input type="radio" name="q12" value="NA"></td></tr>
-<tr><td>13</td><td>Tarefas permitem alternância de posturas e funções?</td><td class="center"><input type="radio" name="q13" value="Sim"></td><td class="center"><input type="radio" name="q13" value="Não"></td><td class="center"><input type="radio" name="q13" value="Parcial"></td><td class="center"><input type="radio" name="q13" value="NA"></td></tr>
-<tr class="category"><td colspan="6">3. Aspectos Cognitivos e Organizacionais</td></tr>
-<tr><td>14</td><td>Exigências cognitivas compatíveis com a função?</td><td class="center"><input type="radio" name="q14" value="Sim"></td><td class="center"><input type="radio" name="q14" value="Não"></td><td class="center"><input type="radio" name="q14" value="Parcial"></td><td class="center"><input type="radio" name="q14" value="NA"></td></tr>
-<tr><td>15</td><td>Carga mental bem distribuída entre os trabalhadores?</td><td class="center"><input type="radio" name="q15" value="Sim"></td><td class="center"><input type="radio" name="q15" value="Não"></td><td class="center"><input type="radio" name="q15" value="Parcial"></td><td class="center"><input type="radio" name="q15" value="NA"></td></tr>
-<tr><td>16</td><td>Avaliação de desempenho considera impactos na saúde?</td><td class="center"><input type="radio" name="q16" value="Sim"></td><td class="center"><input type="radio" name="q16" value="Não"></td><td class="center"><input type="radio" name="q16" value="Parcial"></td><td class="center"><input type="radio" name="q16" value="NA"></td></tr>
-<tr><td>17</td><td>Liderança promove comunicação e suporte?</td><td class="center"><input type="radio" name="q17" value="Sim"></td><td class="center"><input type="radio" name="q17" value="Não"></td><td class="center"><input type="radio" name="q17" value="Parcial"></td><td class="center"><input type="radio" name="q17" value="NA"></td></tr>
-<tr><td>18</td><td>Ambiente justo e respeitoso?</td><td class="center"><input type="radio" name="q18" value="Sim"></td><td class="center"><input type="radio" name="q18" value="Não"></td><td class="center"><input type="radio" name="q18" value="Parcial"></td><td class="center"><input type="radio" name="q18" value="NA"></td></tr>
-<tr class="category"><td colspan="6">4. Participação dos Trabalhadores</td></tr>
-<tr><td>19</td><td>Trabalhadores são consultados sobre riscos psicossociais?</td><td class="center"><input type="radio" name="q19" value="Sim"></td><td class="center"><input type="radio" name="q19" value="Não"></td><td class="center"><input type="radio" name="q19" value="Parcial"></td><td class="center"><input type="radio" name="q19" value="NA"></td></tr>
-<tr><td>20</td><td>Existe canal seguro para relatar problemas psicossociais?</td><td class="center"><input type="radio" name="q20" value="Sim"></td><td class="center"><input type="radio" name="q20" value="Não"></td><td class="center"><input type="radio" name="q20" value="Parcial"></td><td class="center"><input type="radio" name="q20" value="NA"></td></tr>
-<tr><td>21</td><td>CIPA envolvida na análise de riscos psicossociais?</td><td class="center"><input type="radio" name="q21" value="Sim"></td><td class="center"><input type="radio" name="q21" value="Não"></td><td class="center"><input type="radio" name="q21" value="Parcial"></td><td class="center"><input type="radio" name="q21" value="NA"></td></tr>
-<tr class="category"><td colspan="6">5. Integração ao PGR</td></tr>
-<tr><td>22</td><td>Riscos psicossociais estão no inventário de riscos?</td><td class="center"><input type="radio" name="q22" value="Sim"></td><td class="center"><input type="radio" name="q22" value="Não"></td><td class="center"><input type="radio" name="q22" value="Parcial"></td><td class="center"><input type="radio" name="q22" value="NA"></td></tr>
-<tr><td>23</td><td>Medidas de prevenção incluem riscos psicossociais?</td><td class="center"><input type="radio" name="q23" value="Sim"></td><td class="center"><input type="radio" name="q23" value="Não"></td><td class="center"><input type="radio" name="q23" value="Parcial"></td><td class="center"><input type="radio" name="q23" value="NA"></td></tr>
-<tr><td>24</td><td>Ações corretivas priorizadas por gravidade e exposição?</td><td class="center"><input type="radio" name="q24" value="Sim"></td><td class="center"><input type="radio" name="q24" value="Não"></td><td class="center"><input type="radio" name="q24" value="Parcial"></td><td class="center"><input type="radio" name="q24" value="NA"></td></tr>
-<tr><td>25</td><td>Plano de ação com responsáveis, prazos e metas definidos?</td><td class="center"><input type="radio" name="q25" value="Sim"></td><td class="center"><input type="radio" name="q25" value="Não"></td><td class="center"><input type="radio" name="q25" value="Parcial"></td><td class="center"><input type="radio" name="q25" value="NA"></td></tr>
+  <h1>Mapa de Riscos Psicossociais</h1>
+  <p>Escolha a metodologia para avaliar o ambiente de trabalho:</p>
+  <select id="metodologia" onchange="mostrarQuestionario()">
+    <option value="">-- Selecione --</option>
+    <option value="copsoq">COPSOQ III Short</option>
+    <option value="hse">HSE Indicator Tool</option>
+    <option value="niosh">NIOSH WellBQ</option>
+    <option value="nr">NR-01 e NR-17</option>
+  </select>
 
-        </table>
-    </form>
+  <!-- Questionários -->
+  <div id="copsoq" class="questionario">
+    <h2>COPSOQ III Short</h2>
+    <label>1. O trabalho é emocionalmente exigente? <select><option>Sim</option><option>Não</option><option>Parcial</option><option>N/A</option></select></label>
+    <label>2. Você sente apoio dos colegas? <select><option>Sim</option><option>Não</option><option>Parcial</option><option>N/A</option></select></label>
+  </div>
+
+  <div id="hse" class="questionario">
+    <h2>HSE Indicator Tool</h2>
+    <label>1. Há clareza nas funções e responsabilidades? <select><option>Sim</option><option>Não</option><option>Parcial</option><option>N/A</option></select></label>
+    <label>2. Você sofre pressão excessiva por prazos? <select><option>Sim</option><option>Não</option><option>Parcial</option><option>N/A</option></select></label>
+  </div>
+
+  <div id="niosh" class="questionario">
+    <h2>NIOSH WellBQ</h2>
+    <label>1. Você sente que o ambiente é saudável e seguro? <select><option>Sim</option><option>Não</option><option>Parcial</option><option>N/A</option></select></label>
+    <label>2. Há equilíbrio entre trabalho e vida pessoal? <select><option>Sim</option><option>Não</option><option>Parcial</option><option>N/A</option></select></label>
+  </div>
+
+  <div id="nr" class="questionario">
+    <h2>Checklist NR-01 e NR-17</h2>
+    <label>1. O posto de trabalho se adapta ao trabalhador? <select><option>Sim</option><option>Não</option><option>Parcial</option><option>N/A</option></select></label>
+    <label>2. A organização adota pausas e alternância de tarefas? <select><option>Sim</option><option>Não</option><option>Parcial</option><option>N/A</option></select></label>
+  </div>
+
+  <button onclick="mostrarDashboard()">Finalizar e Ver Dashboard</button>
+
+  <div id="dashboard">
+    <h2>Resultado</h2>
+    <p>Avaliação concluída. Veja abaixo o resumo das respostas (exemplo visual):</p>
+    <ul>
+      <li>Respostas "Sim": <span id="resSim">0</span></li>
+      <li>Respostas "Não": <span id="resNao">0</span></li>
+      <li>Parcial: <span id="resParcial">0</span></li>
+      <li>N/A: <span id="resNA">0</span></li>
+    </ul>
+  </div>
+
+  <script>
+    function mostrarQuestionario() {
+      document.querySelectorAll('.questionario').forEach(div => div.style.display = 'none');
+      const metodo = document.getElementById('metodologia').value;
+      if (metodo) document.getElementById(metodo).style.display = 'block';
+    }
+
+    function mostrarDashboard() {
+      const respostas = document.querySelectorAll('select');
+      let sim = 0, nao = 0, parcial = 0, na = 0;
+      respostas.forEach(sel => {
+        const val = sel.value;
+        if (val === 'Sim') sim++;
+        else if (val === 'Não') nao++;
+        else if (val === 'Parcial') parcial++;
+        else if (val === 'N/A') na++;
+      });
+      document.getElementById('resSim').innerText = sim;
+      document.getElementById('resNao').innerText = nao;
+      document.getElementById('resParcial').innerText = parcial;
+      document.getElementById('resNA').innerText = na;
+      document.getElementById('dashboard').style.display = 'block';
+    }
+  </script>
 </body>
 </html>
