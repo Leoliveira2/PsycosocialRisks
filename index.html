@@ -1,204 +1,63 @@
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Risk Psy | Avaliação de Riscos Psicossociais</title>
-<!-- Chart.js CDN -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<style>
-:root{
-  --c1:#0d6efd;--c2:#198754;--c3:#fd7e14;--c4:#dc3545;--bg:#f8f9fa;--txt:#212529;
-  --radius:8px;
-}
-*{box-sizing:border-box;font-family:system-ui, sans-serif}
-body{margin:0;padding:0;background:var(--bg);color:var(--txt)}
-header{padding:1.2rem;text-align:center;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.1)}
-h1{margin:.2rem;font-size:1.4rem}
-main{max-width:900px;margin:2rem auto;padding:0 1rem}
-.card{background:#fff;padding:1rem;margin-bottom:1.2rem;border-radius:var(--radius);box-shadow:0 1px 4px rgba(0,0,0,.08)}
-.btn{display:inline-block;padding:.6rem 1rem;margin:.2rem;border:none;border-radius:var(--radius);cursor:pointer;font-weight:600}
-.btn-primary{background:var(--c1);color:#fff}
-.btn-outline{background:#fff;border:2px solid var(--c1);color:var(--c1)}
-.btn:hover{filter:brightness(.95)}
-.question{margin:.8rem 0}
-.question p{margin:.2rem 0 .4rem;font-weight:500}
-.scale{display:flex;gap:.4rem}
-.scale label{flex:1;text-align:center;padding:.4rem 0;background:#e9ecef;border-radius:var(--radius);cursor:pointer}
-input[type="radio"]{display:none}
-input[type="radio"]:checked+label{background:var(--c1);color:#fff;font-weight:600}
-#dash{display:none}
-canvas{max-width:100%}
-.alert{padding:.8rem;border-radius:var(--radius);margin-top:1rem;font-weight:600}
-.low{background:#d1e7dd;color:#0f5132}
-.mod{background:#fff3cd;color:#664d03}
-.high{background:#f8d7da;color:#842029}
-footer{text-align:center;font-size:.8rem;padding:2rem 0;color:#6c757d}
-</style>
+    <meta charset="UTF-8">
+    <title>Checklist de Riscos Psicossociais</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { text-align: center; color: #2C3E50; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
+        th, td { border: 1px solid #bbb; padding: 8px; text-align: left; }
+        th { background-color: #2C3E50; color: white; }
+        td.center { text-align: center; }
+        .category { background-color: #ecf0f1; font-weight: bold; }
+    </style>
 </head>
 <body>
-<header><h1>Risk Psy — Check de Riscos Psicossociais</h1></header>
+    <h1>Checklist - Avaliação de Riscos Psicossociais</h1>
+    <form>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Pergunta</th>
+                <th>Sim</th>
+                <th>Não</th>
+                <th>Parcial</th>
+                <th>N/A</th>
+            </tr>
+            <tr class="category"><td colspan="6">1. Identificação de Perigos</td></tr>
+<tr><td>1</td><td>Exigência excessiva de produtividade?</td><td class="center"><input type="radio" name="q1" value="Sim"></td><td class="center"><input type="radio" name="q1" value="Não"></td><td class="center"><input type="radio" name="q1" value="Parcial"></td><td class="center"><input type="radio" name="q1" value="NA"></td></tr>
+<tr><td>2</td><td>Metas inalcançáveis ou mal definidas?</td><td class="center"><input type="radio" name="q2" value="Sim"></td><td class="center"><input type="radio" name="q2" value="Não"></td><td class="center"><input type="radio" name="q2" value="Parcial"></td><td class="center"><input type="radio" name="q2" value="NA"></td></tr>
+<tr><td>3</td><td>Pressão que afeta a saúde mental?</td><td class="center"><input type="radio" name="q3" value="Sim"></td><td class="center"><input type="radio" name="q3" value="Não"></td><td class="center"><input type="radio" name="q3" value="Parcial"></td><td class="center"><input type="radio" name="q3" value="NA"></td></tr>
+<tr><td>4</td><td>Ocorrência de assédio moral, sexual ou discriminação?</td><td class="center"><input type="radio" name="q4" value="Sim"></td><td class="center"><input type="radio" name="q4" value="Não"></td><td class="center"><input type="radio" name="q4" value="Parcial"></td><td class="center"><input type="radio" name="q4" value="NA"></td></tr>
+<tr><td>5</td><td>Clareza sobre responsabilidades?</td><td class="center"><input type="radio" name="q5" value="Sim"></td><td class="center"><input type="radio" name="q5" value="Não"></td><td class="center"><input type="radio" name="q5" value="Parcial"></td><td class="center"><input type="radio" name="q5" value="NA"></td></tr>
+<tr><td>6</td><td>Conflitos interpessoais ou hierárquicos?</td><td class="center"><input type="radio" name="q6" value="Sim"></td><td class="center"><input type="radio" name="q6" value="Não"></td><td class="center"><input type="radio" name="q6" value="Parcial"></td><td class="center"><input type="radio" name="q6" value="NA"></td></tr>
+<tr><td>7</td><td>Sentimento de isolamento ou exclusão?</td><td class="center"><input type="radio" name="q7" value="Sim"></td><td class="center"><input type="radio" name="q7" value="Não"></td><td class="center"><input type="radio" name="q7" value="Parcial"></td><td class="center"><input type="radio" name="q7" value="NA"></td></tr>
+<tr><td>8</td><td>Desequilíbrio entre esforço e recompensa?</td><td class="center"><input type="radio" name="q8" value="Sim"></td><td class="center"><input type="radio" name="q8" value="Não"></td><td class="center"><input type="radio" name="q8" value="Parcial"></td><td class="center"><input type="radio" name="q8" value="NA"></td></tr>
+<tr class="category"><td colspan="6">2. Condições de Trabalho</td></tr>
+<tr><td>9</td><td>Avaliação ergonômica preliminar com foco psicossocial realizada?</td><td class="center"><input type="radio" name="q9" value="Sim"></td><td class="center"><input type="radio" name="q9" value="Não"></td><td class="center"><input type="radio" name="q9" value="Parcial"></td><td class="center"><input type="radio" name="q9" value="NA"></td></tr>
+<tr><td>10</td><td>Ritmo de trabalho e exigência de tempo são adequados?</td><td class="center"><input type="radio" name="q10" value="Sim"></td><td class="center"><input type="radio" name="q10" value="Não"></td><td class="center"><input type="radio" name="q10" value="Parcial"></td><td class="center"><input type="radio" name="q10" value="NA"></td></tr>
+<tr><td>11</td><td>Existem pausas para recuperação psicofisiológica?</td><td class="center"><input type="radio" name="q11" value="Sim"></td><td class="center"><input type="radio" name="q11" value="Não"></td><td class="center"><input type="radio" name="q11" value="Parcial"></td><td class="center"><input type="radio" name="q11" value="NA"></td></tr>
+<tr><td>12</td><td>Ambiente físico favorece conforto e bem-estar?</td><td class="center"><input type="radio" name="q12" value="Sim"></td><td class="center"><input type="radio" name="q12" value="Não"></td><td class="center"><input type="radio" name="q12" value="Parcial"></td><td class="center"><input type="radio" name="q12" value="NA"></td></tr>
+<tr><td>13</td><td>Tarefas permitem alternância de posturas e funções?</td><td class="center"><input type="radio" name="q13" value="Sim"></td><td class="center"><input type="radio" name="q13" value="Não"></td><td class="center"><input type="radio" name="q13" value="Parcial"></td><td class="center"><input type="radio" name="q13" value="NA"></td></tr>
+<tr class="category"><td colspan="6">3. Aspectos Cognitivos e Organizacionais</td></tr>
+<tr><td>14</td><td>Exigências cognitivas compatíveis com a função?</td><td class="center"><input type="radio" name="q14" value="Sim"></td><td class="center"><input type="radio" name="q14" value="Não"></td><td class="center"><input type="radio" name="q14" value="Parcial"></td><td class="center"><input type="radio" name="q14" value="NA"></td></tr>
+<tr><td>15</td><td>Carga mental bem distribuída entre os trabalhadores?</td><td class="center"><input type="radio" name="q15" value="Sim"></td><td class="center"><input type="radio" name="q15" value="Não"></td><td class="center"><input type="radio" name="q15" value="Parcial"></td><td class="center"><input type="radio" name="q15" value="NA"></td></tr>
+<tr><td>16</td><td>Avaliação de desempenho considera impactos na saúde?</td><td class="center"><input type="radio" name="q16" value="Sim"></td><td class="center"><input type="radio" name="q16" value="Não"></td><td class="center"><input type="radio" name="q16" value="Parcial"></td><td class="center"><input type="radio" name="q16" value="NA"></td></tr>
+<tr><td>17</td><td>Liderança promove comunicação e suporte?</td><td class="center"><input type="radio" name="q17" value="Sim"></td><td class="center"><input type="radio" name="q17" value="Não"></td><td class="center"><input type="radio" name="q17" value="Parcial"></td><td class="center"><input type="radio" name="q17" value="NA"></td></tr>
+<tr><td>18</td><td>Ambiente justo e respeitoso?</td><td class="center"><input type="radio" name="q18" value="Sim"></td><td class="center"><input type="radio" name="q18" value="Não"></td><td class="center"><input type="radio" name="q18" value="Parcial"></td><td class="center"><input type="radio" name="q18" value="NA"></td></tr>
+<tr class="category"><td colspan="6">4. Participação dos Trabalhadores</td></tr>
+<tr><td>19</td><td>Trabalhadores são consultados sobre riscos psicossociais?</td><td class="center"><input type="radio" name="q19" value="Sim"></td><td class="center"><input type="radio" name="q19" value="Não"></td><td class="center"><input type="radio" name="q19" value="Parcial"></td><td class="center"><input type="radio" name="q19" value="NA"></td></tr>
+<tr><td>20</td><td>Existe canal seguro para relatar problemas psicossociais?</td><td class="center"><input type="radio" name="q20" value="Sim"></td><td class="center"><input type="radio" name="q20" value="Não"></td><td class="center"><input type="radio" name="q20" value="Parcial"></td><td class="center"><input type="radio" name="q20" value="NA"></td></tr>
+<tr><td>21</td><td>CIPA envolvida na análise de riscos psicossociais?</td><td class="center"><input type="radio" name="q21" value="Sim"></td><td class="center"><input type="radio" name="q21" value="Não"></td><td class="center"><input type="radio" name="q21" value="Parcial"></td><td class="center"><input type="radio" name="q21" value="NA"></td></tr>
+<tr class="category"><td colspan="6">5. Integração ao PGR</td></tr>
+<tr><td>22</td><td>Riscos psicossociais estão no inventário de riscos?</td><td class="center"><input type="radio" name="q22" value="Sim"></td><td class="center"><input type="radio" name="q22" value="Não"></td><td class="center"><input type="radio" name="q22" value="Parcial"></td><td class="center"><input type="radio" name="q22" value="NA"></td></tr>
+<tr><td>23</td><td>Medidas de prevenção incluem riscos psicossociais?</td><td class="center"><input type="radio" name="q23" value="Sim"></td><td class="center"><input type="radio" name="q23" value="Não"></td><td class="center"><input type="radio" name="q23" value="Parcial"></td><td class="center"><input type="radio" name="q23" value="NA"></td></tr>
+<tr><td>24</td><td>Ações corretivas priorizadas por gravidade e exposição?</td><td class="center"><input type="radio" name="q24" value="Sim"></td><td class="center"><input type="radio" name="q24" value="Não"></td><td class="center"><input type="radio" name="q24" value="Parcial"></td><td class="center"><input type="radio" name="q24" value="NA"></td></tr>
+<tr><td>25</td><td>Plano de ação com responsáveis, prazos e metas definidos?</td><td class="center"><input type="radio" name="q25" value="Sim"></td><td class="center"><input type="radio" name="q25" value="Não"></td><td class="center"><input type="radio" name="q25" value="Parcial"></td><td class="center"><input type="radio" name="q25" value="NA"></td></tr>
 
-<main>
-  <!-- Seleção de metodologia -->
-  <section id="menu" class="card">
-    <h2>Escolha a metodologia</h2>
-    <button class="btn btn-outline" onclick="start('copsoq')">COPSOQ III Short</button>
-    <button class="btn btn-outline" onclick="start('hse')">HSE Indicator Tool</button>
-    <button class="btn btn-outline" onclick="start('welbq')">NIOSH WellBQ</button>
-  </section>
-
-  <!-- Questionário -->
-  <form id="quiz" class="card" style="display:none" onsubmit="event.preventDefault();finish();">
-    <h2 id="quizTitle"></h2>
-    <div id="questionBox"></div>
-    <button class="btn btn-primary" type="submit">Concluir &amp; Ver Dashboard</button>
-  </form>
-
-  <!-- Dashboard -->
-  <section id="dash" class="card">
-    <h2>Dashboard</h2>
-    <canvas id="radar" height="260"></canvas>
-    <div id="alertBox"></div>
-    <button class="btn btn-outline" onclick="resetApp()">Novo diagnóstico</button>
-  </section>
-</main>
-
-<footer>© 2025 – Projeto demonstrativo. Substitua pelos instrumentos completos antes de uso oficial.</footer>
-
-<script>
-//-------------------------- Base de dados --------------------------
-const db = {
-  copsoq:{
-    title:"COPSOQ III Short",
-    domains:["Demanda","Controle","Suporte","Reconhecimento","Bem-estar"],
-    questions:[
-      {t:"Preciso trabalhar muito rápido?",d:0},
-      {t:"Tenho autonomia para decidir como faço o trabalho?",d:1},
-      {t:"Posso contar com ajuda dos meus colegas?",d:2},
-      {t:"Recebo feedback adequado pelo meu trabalho?",d:3},
-      {t:"Sinto-me energizado ao iniciar o trabalho?",d:4},
-      // …adicione os demais itens (85 total)
-    ]
-  },
-  hse:{
-    title:"HSE Indicator Tool",
-    domains:["Demandas","Controle","Suporte Gerencial","Suporte Colegas","Relacionamentos"],
-    questions:[
-      {t:"Tenho metas e prazos realistas?",d:0},
-      {t:"Posso influenciar a forma como realizo meu trabalho?",d:1},
-      {t:"Meu gestor me encoraja em momentos difíceis?",d:2},
-      {t:"Meus colegas me apoiam quando necessário?",d:3},
-      {t:"Há conflitos não resolvidos no meu time?",d:4},
-      // …adicione o total de 35 itens
-    ]
-  },
-  welbq:{
-    title:"NIOSH WellBQ",
-    domains:["Recursos Trabalho","Exigências","Ambiente Organizacional","Saúde Mental","Bem-estar Global"],
-    questions:[
-      {t:"Tenho recursos suficientes para realizar meu trabalho bem?",d:0},
-      {t:"Meu trabalho exige esforço emocional intenso?",d:1},
-      {t:"Consigo equilibrar trabalho e vida pessoal?",d:2},
-      {t:"Sinto que pertenço à organização?",d:3},
-      {t:"No geral, como avalia sua saúde hoje?",d:4},
-      // …adicione os demais itens (126 total)
-    ]
-  }
-};
-
-//-------------------------- Variáveis globais --------------------------
-let currentMethod=null;
-let scores=[],totals=[];
-//-------------------------- Fluxo --------------------------
-function start(key){
-  currentMethod=db[key];
-  document.getElementById("menu").style.display="none";
-  const qForm=document.getElementById("quiz");
-  qForm.style.display="block";
-  document.getElementById("quizTitle").textContent=currentMethod.title;
-  buildQuestions();
-}
-
-function buildQuestions(){
-  const box=document.getElementById("questionBox");
-  box.innerHTML="";
-  currentMethod.questions.forEach((q,i)=>{
-    const div=document.createElement("div");
-    div.className="question";
-    div.innerHTML=`<p>${i+1}. ${q.t}</p><div class="scale">${buildScale(i)}</div>`;
-    box.appendChild(div);
-  });
-}
-function buildScale(i){
-  let html="";
-  for(let v=1;v<=5;v++){
-    html+=`
-      <input type="radio" id="q${i}_${v}" name="q${i}" value="${v}" required>
-      <label for="q${i}_${v}">${v}</label>`;
-  }
-  return html;
-}
-
-function finish(){
-  const data=[];
-  const domTotals=Array(currentMethod.domains.length).fill(0);
-  const domCounts=Array(currentMethod.domains.length).fill(0);
-
-  currentMethod.questions.forEach((q,i)=>{
-    const val=parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
-    data.push(val);
-    domTotals[q.d]+=val;
-    domCounts[q.d]++;
-  });
-  // média por domínio
-  scores=domTotals.map((t,i)=>t/domCounts[i]);
-  totals=data.reduce((a,b)=>a+b,0)/data.length;
-
-  localStorage.setItem("riskpsy_last",JSON.stringify({method:currentMethod.title,scores,totals,dt:new Date()}));
-  showDash();
-}
-
-function showDash(){
-  document.getElementById("quiz").style.display="none";
-  document.getElementById("dash").style.display="block";
-  renderRadar();
-  renderAlert();
-}
-
-function renderRadar(){
-  const ctx=document.getElementById("radar");
-  if(window.radarChart) radarChart.destroy();
-  window.radarChart=new Chart(ctx,{
-    type:"radar",
-    data:{
-      labels:currentMethod.domains,
-      datasets:[{
-        label:"Média 1-5",
-        data:scores,
-        fill:true,
-        pointRadius:4,
-        tension:0.2
-      }]
-    },
-    options:{
-      scales:{r:{suggestedMin:1,suggestedMax:5,ticks:{stepSize:1}}},
-      plugins:{legend:{display:false}}
-    }
-  });
-}
-function renderAlert(){
-  const box=document.getElementById("alertBox");
-  let level="low",msg="Risco geral baixo — continue monitorando.";
-  if(totals>=3.5 && totals<4.2){level="mod";msg="Risco moderado — atenção a demandas e suporte.";}
-  if(totals>=4.2){level="high";msg="Risco alto — iniciar plano de ação imediato!";}
-  box.className=`alert ${level}`;
-  box.textContent=`Score global: ${totals.toFixed(2)} – ${msg}`;
-}
-function resetApp(){
-  document.getElementById("dash").style.display="none";
-  document.getElementById("menu").style.display="block";
-}
-</script>
+        </table>
+    </form>
 </body>
 </html>
