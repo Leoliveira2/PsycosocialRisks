@@ -1,106 +1,4 @@
-<div id="nr" class="questionario card">
-        <h2>📋 NR-01 e NR-17</h2>
-        <div class="question-group">
-          <label class="question-title">1. Seu posto de trabalho é adequado às suas características físicas?</label>
-          <div class="radio-group">
-            <label class="radio-option">
-              <input type="radio" name="nr_q1" value="Totalmente" onchange="updateProgress()">
-              <span class="radio-text">Totalmente adequado</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="nr_q1" value="Muito" onchange="updateProgress()">
-              <span class="radio-text">Muito adequado</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="nr_q1" value="Parcialmente" onchange="updateProgress()">
-              <span class="radio-text">Parcialmente adequado</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="nr_q1" value="Pouco" onchange="updateProgress()">
-              <span class="radio-text">Pouco adequado</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="nr_q1" value="Inadequado" onchange="updateProgress()">
-              <span class="radio-text">Inadequado</span>
-            </label>
-          </div>
-        </div>
-        <div class="question-group">
-          <label class="question-title">2. Há pausas suficientes para recuperação física e mental?</label>
-          <div class="radio-group">
-            <label class="radio-option">
-              <input type="radio" name="nr_q2" value="Sempre" onchange="updateProgress()">
-              <span class="radio-text">Sempre suficientes</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="nr_q2" value="Frequentemente" onchange="updateProgress()">
-              <span class="radio-text">Frequentemente suficientes</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="nr_q2" value="Às vezes" onchange="updateProgress()">
-              <span class="radio-text">Às vezes suficientes</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="nr_q2" value="Raramente" onchange="updateProgress()">
-              <span class="radio-text">Raramente suficientes</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="nr_q2" value="Nunca" onchange="updateProgress()">
-              <span class="radio-text">Nunca suficientes</span>
-            </label>
-          </div>
-        </div>
-        <div class="question-group">
-          <label class="question-title">3. Você recebe orientações claras sobre riscos ocupacionais?</label>
-          <div class="radio-group">
-            <label class="radio-option">
-              <input type="radio" name="nr_q3" value="Sempre" onchange="updateProgress()">
-              <span class="radio-text">Sempre</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="nr_q3" value="Frequentemente" onchange="updateProgress()">
-              <span class="radio-text">Frequentemente</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="nr_q3" value="Às vezes" onchange="updateProgress()">
-              <span class="radio-text">Às vezes</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="nr_q3" value="Raramente" onchange="updateProgress()">
-              <span class="radio-text">Raramente</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="nr_q3" value="Nunca" onchange="updateProgress()">
-              <span class="radio-text">Nunca</span>
-            </label>
-          </div>
-        </div>
-        <div class="question-group">
-          <label class="question-title">4. A empresa considera sugestões sobre melhorias ergonômicas?</label>
-          <div class="radio-group">
-            <label class="radio-option">
-              <input type="radio" name="nr_q4" value="Sempre" onchange="updateProgress()">
-              <span class="radio-text">Sempre</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="nr_q4" value="Frequentemente" onchange="updateProgress()">
-              <span class="radio-text">Frequentemente</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="nr_q4" value="Às vezes" onchange="updateProgress()">
-              <span class="radio-text">Às vezes</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="nr_q4" value="Raramente" onchange="updateProgress()">
-              <span class="radio-text">Raramente</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="nr_q4" value="Nunca" onchange="updateProgress()">
-              <span class="radio-text">Nunca</span>
-            </label>
-          </div>
-        </div>
-      </div><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -225,19 +123,18 @@
       gap: 10px;
     }
 
+    .questionnaire-info {
+      color: #666;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
     .question-group {
       margin-bottom: 20px;
       padding: 20px;
       background: #f8f9fa;
       border-radius: 8px;
       border-left: 4px solid var(--secondary-color);
-    }
-
-    .question-group label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: 500;
-      color: #333;
     }
 
     .question-title {
@@ -297,10 +194,6 @@
       line-height: 1.4;
     }
 
-    .question-group select {
-      margin-top: 5px;
-    }
-
     .btn {
       background: var(--primary-color);
       color: white;
@@ -329,6 +222,75 @@
       background: #ccc;
       cursor: not-allowed;
       transform: none;
+    }
+
+    .version-selector {
+      margin-bottom: 30px;
+      display: none;
+    }
+
+    .version-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .version-option {
+      cursor: pointer;
+      margin: 0;
+    }
+
+    .version-option input[type="radio"] {
+      display: none;
+    }
+
+    .version-card {
+      padding: 20px;
+      border: 2px solid #e0e0e0;
+      border-radius: var(--border-radius);
+      background: white;
+      transition: var(--transition);
+      text-align: center;
+      height: 100%;
+    }
+
+    .version-card h4 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .version-card p {
+      margin: 5px 0;
+      font-size: 0.9rem;
+    }
+
+    .version-option input[type="radio"]:checked + .version-card {
+      border-color: var(--primary-color);
+      background: rgba(21, 101, 192, 0.05);
+      box-shadow: 0 4px 15px rgba(21, 101, 192, 0.2);
+    }
+
+    .version-card:hover {
+      border-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      background: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--secondary-color);
+      transition: width 0.3s ease;
+      width: 0%;
     }
 
     #dashboard {
@@ -420,30 +382,6 @@
       margin-right: 10px;
     }
 
-    .progress-bar {
-      width: 100%;
-      height: 10px;
-      background: #e0e0e0;
-      border-radius: 5px;
-      overflow: hidden;
-      margin: 20px 0;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: var(--secondary-color);
-      transition: width 0.3s ease;
-    }
-
-    .methodology-info {
-      margin-top: 15px;
-      padding: 15px;
-      background: #e3f2fd;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      color: #1565c0;
-    }
-
     .export-btn {
       background: var(--success-color);
       margin-top: 20px;
@@ -494,6 +432,10 @@
       
       .question-title {
         font-size: 1rem;
+      }
+      
+      .version-options {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -547,760 +489,304 @@
         </div>
       </div>
 
+      <div id="version-selector" class="card version-selector">
+        <label>Escolha o tipo de avaliação:</label>
+        <div class="version-options">
+          <label class="version-option">
+            <input type="radio" name="version_type" value="rapida" onchange="updateVersionInfo()">
+            <div class="version-card">
+              <h4>⚡ Triagem Rápida</h4>
+              <p><strong>5-6 questões</strong></p>
+              <p>Avaliação inicial e rápida</p>
+              <p>Tempo: 3-5 minutos</p>
+            </div>
+          </label>
+          <label class="version-option">
+            <input type="radio" name="version_type" value="completa" onchange="updateVersionInfo()">
+            <div class="version-card">
+              <h4>📋 Avaliação Completa</h4>
+              <p><strong>18-24 questões</strong></p>
+              <p>Análise detalhada e abrangente</p>
+              <p>Tempo: 10-15 minutos</p>
+            </div>
+          </label>
+        </div>
+      </div>
+
       <div class="progress-bar" id="progress-container" style="display: none;">
         <div class="progress-fill" id="progress-fill"></div>
       </div>
 
-      <div id="copsoq" class="questionario card">
-        <h2>🧠 COPSOQ III Short</h2>
+      <!-- COPSOQ III Short - Versão Rápida -->
+      <div id="copsoq-rapida" class="questionario card">
+        <h2>🧠 COPSOQ III Short - Triagem Rápida</h2>
+        <p class="questionnaire-info">5 questões essenciais baseadas no questionário oficial internacional</p>
+        
         <div class="question-group">
-          <label class="question-title">1. Seu trabalho exige que você tome decisões difíceis?</label>
+          <label class="question-title">1. Com que frequência você não tem tempo suficiente para completar todas as suas tarefas de trabalho?</label>
           <div class="radio-group">
             <label class="radio-option">
-              <input type="radio" name="copsoq_q1" value="Sempre" onchange="updateProgress()">
+              <input type="radio" name="copsoq_q1" value="4" onchange="updateProgress()">
               <span class="radio-text">Sempre</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="copsoq_q1" value="Frequentemente" onchange="updateProgress()">
+              <input type="radio" name="copsoq_q1" value="3" onchange="updateProgress()">
               <span class="radio-text">Frequentemente</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="copsoq_q1" value="Às vezes" onchange="updateProgress()">
+              <input type="radio" name="copsoq_q1" value="2" onchange="updateProgress()">
               <span class="radio-text">Às vezes</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="copsoq_q1" value="Raramente" onchange="updateProgress()">
+              <input type="radio" name="copsoq_q1" value="1" onchange="updateProgress()">
               <span class="radio-text">Raramente</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="copsoq_q1" value="Nunca" onchange="updateProgress()">
+              <input type="radio" name="copsoq_q1" value="0" onchange="updateProgress()">
               <span class="radio-text">Nunca</span>
             </label>
           </div>
         </div>
+
         <div class="question-group">
-          <label class="question-title">2. Você tem autonomia para decidir como realizar seu trabalho?</label>
+          <label class="question-title">2. Você tem um alto grau de influência nas decisões relacionadas ao seu trabalho?</label>
           <div class="radio-group">
             <label class="radio-option">
-              <input type="radio" name="copsoq_q2" value="Muita" onchange="updateProgress()">
-              <span class="radio-text">Muita autonomia</span>
+              <input type="radio" name="copsoq_q2" value="4" onchange="updateProgress()">
+              <span class="radio-text">Em grande medida</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="copsoq_q2" value="Moderada" onchange="updateProgress()">
-              <span class="radio-text">Autonomia moderada</span>
+              <input type="radio" name="copsoq_q2" value="3" onchange="updateProgress()">
+              <span class="radio-text">Em boa medida</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="copsoq_q2" value="Pouca" onchange="updateProgress()">
-              <span class="radio-text">Pouca autonomia</span>
+              <input type="radio" name="copsoq_q2" value="2" onchange="updateProgress()">
+              <span class="radio-text">De alguma forma</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="copsoq_q2" value="Nenhuma" onchange="updateProgress()">
-              <span class="radio-text">Nenhuma autonomia</span>
+              <input type="radio" name="copsoq_q2" value="1" onchange="updateProgress()">
+              <span class="radio-text">Em pequena medida</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q2" value="0" onchange="updateProgress()">
+              <span class="radio-text">Muito pouco</span>
             </label>
           </div>
         </div>
+
         <div class="question-group">
-          <label class="question-title">3. Você sente apoio dos seus colegas de trabalho?</label>
+          <label class="question-title">3. Com que frequência você recebe ajuda e apoio do seu supervisor imediato, quando necessário?</label>
           <div class="radio-group">
             <label class="radio-option">
-              <input type="radio" name="copsoq_q3" value="Sempre" onchange="updateProgress()">
+              <input type="radio" name="copsoq_q3" value="4" onchange="updateProgress()">
               <span class="radio-text">Sempre</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="copsoq_q3" value="Frequentemente" onchange="updateProgress()">
+              <input type="radio" name="copsoq_q3" value="3" onchange="updateProgress()">
               <span class="radio-text">Frequentemente</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="copsoq_q3" value="Às vezes" onchange="updateProgress()">
+              <input type="radio" name="copsoq_q3" value="2" onchange="updateProgress()">
               <span class="radio-text">Às vezes</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="copsoq_q3" value="Raramente" onchange="updateProgress()">
+              <input type="radio" name="copsoq_q3" value="1" onchange="updateProgress()">
               <span class="radio-text">Raramente</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="copsoq_q3" value="Nunca" onchange="updateProgress()">
+              <input type="radio" name="copsoq_q3" value="0" onchange="updateProgress()">
               <span class="radio-text">Nunca</span>
             </label>
           </div>
         </div>
+
         <div class="question-group">
-          <label class="question-title">4. Você consegue separar trabalho e vida pessoal?</label>
+          <label class="question-title">4. Com que frequência você recebe ajuda e apoio dos seus colegas, quando necessário?</label>
           <div class="radio-group">
             <label class="radio-option">
-              <input type="radio" name="copsoq_q4" value="Sempre" onchange="updateProgress()">
+              <input type="radio" name="copsoq_q4" value="4" onchange="updateProgress()">
               <span class="radio-text">Sempre</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="copsoq_q4" value="Frequentemente" onchange="updateProgress()">
+              <input type="radio" name="copsoq_q4" value="3" onchange="updateProgress()">
               <span class="radio-text">Frequentemente</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="copsoq_q4" value="Às vezes" onchange="updateProgress()">
+              <input type="radio" name="copsoq_q4" value="2" onchange="updateProgress()">
               <span class="radio-text">Às vezes</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="copsoq_q4" value="Raramente" onchange="updateProgress()">
+              <input type="radio" name="copsoq_q4" value="1" onchange="updateProgress()">
               <span class="radio-text">Raramente</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="copsoq_q4" value="Nunca" onchange="updateProgress()">
+              <input type="radio" name="copsoq_q4" value="0" onchange="updateProgress()">
               <span class="radio-text">Nunca</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-group">
+          <label class="question-title">5. Seu trabalho é significativo para você?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q5" value="4" onchange="updateProgress()">
+              <span class="radio-text">Em grande medida</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q5" value="3" onchange="updateProgress()">
+              <span class="radio-text">Em boa medida</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q5" value="2" onchange="updateProgress()">
+              <span class="radio-text">De alguma forma</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q5" value="1" onchange="updateProgress()">
+              <span class="radio-text">Em pequena medida</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q5" value="0" onchange="updateProgress()">
+              <span class="radio-text">Muito pouco</span>
             </label>
           </div>
         </div>
       </div>
 
-      <div id="hse" class="questionario card">
-        <h2>📊 HSE Indicator Tool</h2>
+      <!-- HSE Indicator Tool - Versão Rápida -->
+      <div id="hse-rapida" class="questionario card">
+        <h2>📊 HSE Indicator Tool - Triagem Rápida</h2>
+        <p class="questionnaire-info">6 questões essenciais (1 por domínio) baseadas no questionário oficial britânico</p>
+        
         <div class="question-group">
-          <label class="question-title">1. Você compreende claramente o que é esperado do seu trabalho?</label>
+          <label class="question-title">1. [DEMANDS] Eu tenho prazos irreais para cumprir</label>
           <div class="radio-group">
             <label class="radio-option">
-              <input type="radio" name="hse_q1" value="Completamente" onchange="updateProgress()">
-              <span class="radio-text">Completamente claro</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="hse_q1" value="Muito" onchange="updateProgress()">
-              <span class="radio-text">Muito claro</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="hse_q1" value="Moderadamente" onchange="updateProgress()">
-              <span class="radio-text">Moderadamente claro</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="hse_q1" value="Pouco" onchange="updateProgress()">
-              <span class="radio-text">Pouco claro</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="hse_q1" value="Nada" onchange="updateProgress()">
-              <span class="radio-text">Nada claro</span>
-            </label>
-          </div>
-        </div>
-        <div class="question-group">
-          <label class="question-title">2. Seu volume de trabalho é adequado?</label>
-          <div class="radio-group">
-            <label class="radio-option">
-              <input type="radio" name="hse_q2" value="Muito adequado" onchange="updateProgress()">
-              <span class="radio-text">Muito adequado</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="hse_q2" value="Adequado" onchange="updateProgress()">
-              <span class="radio-text">Adequado</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="hse_q2" value="Aceitável" onchange="updateProgress()">
-              <span class="radio-text">Aceitável</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="hse_q2" value="Excessivo" onchange="updateProgress()">
-              <span class="radio-text">Excessivo</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="hse_q2" value="Muito excessivo" onchange="updateProgress()">
-              <span class="radio-text">Muito excessivo</span>
-            </label>
-          </div>
-        </div>
-        <div class="question-group">
-          <label class="question-title">3. Seu gestor oferece suporte adequado?</label>
-          <div class="radio-group">
-            <label class="radio-option">
-              <input type="radio" name="hse_q3" value="Sempre" onchange="updateProgress()">
+              <input type="radio" name="hse_q1" value="0" onchange="updateProgress()">
               <span class="radio-text">Sempre</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="hse_q3" value="Frequentemente" onchange="updateProgress()">
+              <input type="radio" name="hse_q1" value="1" onchange="updateProgress()">
               <span class="radio-text">Frequentemente</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="hse_q3" value="Às vezes" onchange="updateProgress()">
+              <input type="radio" name="hse_q1" value="2" onchange="updateProgress()">
               <span class="radio-text">Às vezes</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="hse_q3" value="Raramente" onchange="updateProgress()">
+              <input type="radio" name="hse_q1" value="3" onchange="updateProgress()">
               <span class="radio-text">Raramente</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="hse_q3" value="Nunca" onchange="updateProgress()">
+              <input type="radio" name="hse_q1" value="4" onchange="updateProgress()">
               <span class="radio-text">Nunca</span>
             </label>
           </div>
         </div>
-        <div class="question-group">
-          <label class="question-title">4. Há clareza de papéis e responsabilidades na sua equipe?</label>
-          <div class="radio-group">
-            <label class="radio-option">
-              <input type="radio" name="hse_q4" value="Muito clara" onchange="updateProgress()">
-              <span class="radio-text">Muito clara</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="hse_q4" value="Clara" onchange="updateProgress()">
-              <span class="radio-text">Clara</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="hse_q4" value="Moderada" onchange="updateProgress()">
-              <span class="radio-text">Moderada</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="hse_q4" value="Pouco clara" onchange="updateProgress()">
-              <span class="radio-text">Pouco clara</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="hse_q4" value="Confusa" onchange="updateProgress()">
-              <span class="radio-text">Confusa</span>
-            </label>
-          </div>
-        </div>
-      </div>
 
-      <div id="niosh" class="questionario card">
-        <h2>🏥 NIOSH WellBQ</h2>
         <div class="question-group">
-          <label class="question-title">1. Você se sente valorizado e reconhecido no trabalho?</label>
+          <label class="question-title">2. [CONTROL] Eu posso decidir quando fazer uma pausa</label>
           <div class="radio-group">
             <label class="radio-option">
-              <input type="radio" name="niosh_q1" value="Sempre" onchange="updateProgress()">
+              <input type="radio" name="hse_q2" value="4" onchange="updateProgress()">
               <span class="radio-text">Sempre</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="niosh_q1" value="Frequentemente" onchange="updateProgress()">
+              <input type="radio" name="hse_q2" value="3" onchange="updateProgress()">
               <span class="radio-text">Frequentemente</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="niosh_q1" value="Às vezes" onchange="updateProgress()">
+              <input type="radio" name="hse_q2" value="2" onchange="updateProgress()">
               <span class="radio-text">Às vezes</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="niosh_q1" value="Raramente" onchange="updateProgress()">
+              <input type="radio" name="hse_q2" value="1" onchange="updateProgress()">
               <span class="radio-text">Raramente</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="niosh_q1" value="Nunca" onchange="updateProgress()">
+              <input type="radio" name="hse_q2" value="0" onchange="updateProgress()">
               <span class="radio-text">Nunca</span>
             </label>
           </div>
         </div>
+
         <div class="question-group">
-          <label class="question-title">2. O ambiente de trabalho é saudável física e emocionalmente?</label>
+          <label class="question-title">3. [SUPPORT] Se o trabalho ficar difícil, meus colegas me ajudam</label>
           <div class="radio-group">
             <label class="radio-option">
-              <input type="radio" name="niosh_q2" value="Muito saudável" onchange="updateProgress()">
-              <span class="radio-text">Muito saudável</span>
+              <input type="radio" name="hse_q3" value="4" onchange="updateProgress()">
+              <span class="radio-text">Sempre</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="niosh_q2" value="Saudável" onchange="updateProgress()">
-              <span class="radio-text">Saudável</span>
+              <input type="radio" name="hse_q3" value="3" onchange="updateProgress()">
+              <span class="radio-text">Frequentemente</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="niosh_q2" value="Neutro" onchange="updateProgress()">
+              <input type="radio" name="hse_q3" value="2" onchange="updateProgress()">
+              <span class="radio-text">Às vezes</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q3" value="1" onchange="updateProgress()">
+              <span class="radio-text">Raramente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q3" value="0" onchange="updateProgress()">
+              <span class="radio-text">Nunca</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-group">
+          <label class="question-title">4. [RELATIONSHIPS] Existe tensão ou raiva entre os colegas</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="hse_q4" value="0" onchange="updateProgress()">
+              <span class="radio-text">Sempre</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q4" value="1" onchange="updateProgress()">
+              <span class="radio-text">Frequentemente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q4" value="2" onchange="updateProgress()">
+              <span class="radio-text">Às vezes</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q4" value="3" onchange="updateProgress()">
+              <span class="radio-text">Raramente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q4" value="4" onchange="updateProgress()">
+              <span class="radio-text">Nunca</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-group">
+          <label class="question-title">5. [ROLE] Está claro para mim quais são meus deveres e responsabilidades</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="hse_q5" value="4" onchange="updateProgress()">
+              <span class="radio-text">Concordo totalmente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q5" value="3" onchange="updateProgress()">
+              <span class="radio-text">Concordo</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q5" value="2" onchange="updateProgress()">
               <span class="radio-text">Neutro</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="niosh_q2" value="Pouco saudável" onchange="updateProgress()">
-              <span class="radio-text">Pouco saudável</span>
+              <input type="radio" name="hse_q5" value="1" onchange="updateProgress()">
+              <span class="radio-text">Discordo</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="niosh_q2" value="Insalubre" onchange="updateProgress()">
-              <span class="radio-text">Insalubre</span>
+              <input type="radio" name="hse_q5" value="0" onchange="updateProgress()">
+              <span class="radio-text">Discordo totalmente</span>
             </label>
           </div>
         </div>
+
         <div class="question-group">
-          <label class="question-title">3. Seu trabalho tem impacto negativo na sua saúde física?</label>
-          <div class="radio-group">
-            <label class="radio-option">
-              <input type="radio" name="niosh_q3" value="Nunca" onchange="updateProgress()">
-              <span class="radio-text">Nunca</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="niosh_q3" value="Raramente" onchange="updateProgress()">
-              <span class="radio-text">Raramente</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="niosh_q3" value="Às vezes" onchange="updateProgress()">
-              <span class="radio-text">Às vezes</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="niosh_q3" value="Frequentemente" onchange="updateProgress()">
-              <span class="radio-text">Frequentemente</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="niosh_q3" value="Sempre" onchange="updateProgress()">
-              <span class="radio-text">Sempre</span>
-            </label>
-          </div>
-        </div>
-        <div class="question-group">
-          <label class="question-title">4. Você tem acesso a recursos para seu bem-estar no trabalho?</label>
-          <div class="radio-group">
-            <label class="radio-option">
-              <input type="radio" name="niosh_q4" value="Acesso total" onchange="updateProgress()">
-              <span class="radio-text">Acesso total</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="niosh_q4" value="Bom acesso" onchange="updateProgress()">
-              <span class="radio-text">Bom acesso</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="niosh_q4" value="Acesso limitado" onchange="updateProgress()">
-              <span class="radio-text">Acesso limitado</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="niosh_q4" value="Pouco acesso" onchange="updateProgress()">
-              <span class="radio-text">Pouco acesso</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="niosh_q4" value="Nenhum acesso" onchange="updateProgress()">
-              <span class="radio-text">Nenhum acesso</span>
-            </label>
-          </div>
-        </div>
-      </div>
-
-      <div id="nr" class="questionario card">
-        <h2>📋 NR-01 e NR-17</h2>
-        <div class="question-group">
-          <label>1. Seu posto de trabalho é adequado às suas características físicas?</label>
-          <select onchange="updateProgress()" aria-label="Resposta pergunta 1">
-            <option value="">-- Selecione --</option>
-            <option value="Totalmente">Totalmente adequado</option>
-            <option value="Muito">Muito adequado</option>
-            <option value="Parcialmente">Parcialmente adequado</option>
-            <option value="Pouco">Pouco adequado</option>
-            <option value="Inadequado">Inadequado</option>
-          </select>
-        </div>
-        <div class="question-group">
-          <label>2. Há pausas suficientes para recuperação física e mental?</label>
-          <select onchange="updateProgress()" aria-label="Resposta pergunta 2">
-            <option value="">-- Selecione --</option>
-            <option value="Sempre">Sempre suficientes</option>
-            <option value="Frequentemente">Frequentemente suficientes</option>
-            <option value="Às vezes">Às vezes suficientes</option>
-            <option value="Raramente">Raramente suficientes</option>
-            <option value="Nunca">Nunca suficientes</option>
-          </select>
-        </div>
-        <div class="question-group">
-          <label>3. Você recebe orientações claras sobre riscos ocupacionais?</label>
-          <select onchange="updateProgress()" aria-label="Resposta pergunta 3">
-            <option value="">-- Selecione --</option>
-            <option value="Sempre">Sempre</option>
-            <option value="Frequentemente">Frequentemente</option>
-            <option value="Às vezes">Às vezes</option>
-            <option value="Raramente">Raramente</option>
-            <option value="Nunca">Nunca</option>
-          </select>
-        </div>
-        <div class="question-group">
-          <label>4. A empresa considera sugestões sobre melhorias ergonômicas?</label>
-          <select onchange="updateProgress()" aria-label="Resposta pergunta 4">
-            <option value="">-- Selecione --</option>
-            <option value="Sempre">Sempre</option>
-            <option value="Frequentemente">Frequentemente</option>
-            <option value="Às vezes">Às vezes</option>
-            <option value="Raramente">Raramente</option>
-            <option value="Nunca">Nunca</option>
-          </select>
-        </div>
-      </div>
-
-      <button class="btn" onclick="mostrarDashboard()" id="finalizarBtn" disabled>
-        Finalizar Avaliação
-      </button>
-    </main>
-
-    <div id="dashboard" class="card">
-      <div class="dashboard-header">
-        <h2>📊 Resumo da Avaliação</h2>
-        <p>Análise completa dos riscos psicossociais</p>
-      </div>
-
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-number" id="totalQuestions">0</div>
-          <div class="stat-label">Total de Questões</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number" id="positiveScore">0</div>
-          <div class="stat-label">Pontuação Positiva</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number" id="riskLevel">-</div>
-          <div class="stat-label">Nível de Risco</div>
-        </div>
-      </div>
-
-      <div class="chart-container">
-        <canvas id="resumoChart"></canvas>
-      </div>
-
-      <div class="recommendations">
-        <h3>💡 Recomendações</h3>
-        <ul id="recommendationsList">
-          <!-- Recomendações serão inseridas aqui -->
-        </ul>
-      </div>
-
-      <div style="text-align: center; margin-top: 30px;">
-        <button class="btn export-btn" onclick="exportarRelatorio()">
-          📄 Exportar Relatório
-        </button>
-        <button class="btn reset-btn" onclick="resetarAvaliacao()">
-          🔄 Nova Avaliação
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    const metodologiaDescricoes = {
-      copsoq: "COPSOQ III Short - Questionário internacional para avaliação de riscos psicossociais, focado em demandas, controle e suporte social.",
-      hse: "HSE Indicator Tool - Ferramenta britânica para identificação de fatores de estresse relacionados ao trabalho.",
-      niosh: "NIOSH WellBQ - Questionário americano para avaliação do bem-estar e saúde mental no trabalho.",
-      nr: "NR-01 e NR-17 - Normas Regulamentadoras brasileiras sobre gestão de riscos e ergonomia."
-    };
-
-    let currentChart = null;
-
-    function mostrarQuestionario() {
-      // Ocultar todos os questionários
-      document.querySelectorAll('.questionario').forEach(q => {
-        q.style.display = 'none';
-        q.classList.remove('active');
-      });
-      
-      document.getElementById('dashboard').style.display = 'none';
-      document.getElementById('dashboard').classList.remove('active');
-      
-      const escolha = document.getElementById('metodologia').value;
-      const infoDiv = document.getElementById('metodologia-info');
-      const progressContainer = document.getElementById('progress-container');
-      
-      if (escolha) {
-        const questionario = document.getElementById(escolha);
-        questionario.style.display = 'block';
-        questionario.classList.add('active');
-        
-        // Mostrar informações da metodologia
-        document.getElementById('metodologia-descricao').textContent = metodologiaDescricoes[escolha];
-        infoDiv.style.display = 'block';
-        
-        // Mostrar barra de progresso
-        progressContainer.style.display = 'block';
-        
-        // Resetar respostas
-        questionario.querySelectorAll('input[type="radio"]').forEach(radio => {
-          radio.checked = false;
-        });
-        
-        updateProgress();
-      } else {
-        infoDiv.style.display = 'none';
-        progressContainer.style.display = 'none';
-      }
-    }
-
-    function updateProgress() {
-      const activeQuestionario = document.querySelector('.questionario.active');
-      if (!activeQuestionario) return;
-      
-      const radioGroups = activeQuestionario.querySelectorAll('.radio-group');
-      const totalQuestions = radioGroups.length;
-      let answeredQuestions = 0;
-      
-      radioGroups.forEach(group => {
-        const checkedRadio = group.querySelector('input[type="radio"]:checked');
-        if (checkedRadio) {
-          answeredQuestions++;
-        }
-      });
-      
-      const progress = (answeredQuestions / totalQuestions) * 100;
-      document.getElementById('progress-fill').style.width = progress + '%';
-      
-      const finalizarBtn = document.getElementById('finalizarBtn');
-      finalizarBtn.disabled = progress < 100;
-    }
-
-    function mostrarDashboard() {
-      const activeQuestionario = document.querySelector('.questionario.active');
-      if (!activeQuestionario) return;
-      
-      const radioGroups = activeQuestionario.querySelectorAll('.radio-group');
-      const metodologia = document.getElementById('metodologia').value;
-      
-      // Calcular pontuações
-      let totalQuestions = radioGroups.length;
-      let positiveScore = 0;
-      let responses = [];
-      
-      radioGroups.forEach(group => {
-        const checkedRadio = group.querySelector('input[type="radio"]:checked');
-        if (checkedRadio) {
-          const value = checkedRadio.value;
-          responses.push(value);
-          // Sistema de pontuação baseado na metodologia
-          positiveScore += calculateScore(value, metodologia);
-        }
-      });
-      
-      // Determinar nível de risco
-      const riskPercentage = (positiveScore / (totalQuestions * 4)) * 100;
-      let riskLevel, riskColor;
-      
-      if (riskPercentage >= 75) {
-        riskLevel = 'Baixo';
-        riskColor = '#4caf50';
-      } else if (riskPercentage >= 50) {
-        riskLevel = 'Moderado';
-        riskColor = '#ff9800';
-      } else {
-        riskLevel = 'Alto';
-        riskColor = '#ef5350';
-      }
-      
-      // Atualizar estatísticas
-      document.getElementById('totalQuestions').textContent = totalQuestions;
-      document.getElementById('positiveScore').textContent = positiveScore + '/' + (totalQuestions * 4);
-      document.getElementById('riskLevel').textContent = riskLevel;
-      document.getElementById('riskLevel').style.color = riskColor;
-      
-      // Criar gráfico
-      createChart(responses, metodologia);
-      
-      // Gerar recomendações
-      generateRecommendations(riskLevel, metodologia);
-      
-      // Mostrar dashboard
-      document.getElementById('dashboard').style.display = 'block';
-      document.getElementById('dashboard').classList.add('active');
-      
-      // Scroll para o dashboard
-      document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function calculateScore(value, metodologia) {
-      // Sistema de pontuação baseado na resposta
-      const positiveValues = ['Sempre', 'Frequentemente', 'Muito', 'Totalmente', 'Completamente', 'Muito adequado', 'Adequado', 'Muito saudável', 'Saudável', 'Acesso total', 'Bom acesso', 'Muito clara', 'Clara'];
-      const moderateValues = ['Às vezes', 'Moderadamente', 'Moderada', 'Parcialmente', 'Aceitável', 'Neutro', 'Acesso limitado'];
-      const negativeValues = ['Raramente', 'Nunca', 'Pouco', 'Nenhuma', 'Inadequado', 'Excessivo', 'Muito excessivo', 'Pouco clara', 'Confusa', 'Insalubre', 'Pouco saudável', 'Pouco acesso', 'Nenhum acesso'];
-      
-      if (positiveValues.includes(value)) return 4;
-      if (moderateValues.includes(value)) return 2;
-      if (negativeValues.includes(value)) return 1;
-      return 0;
-    }
-
-    function createChart(responses, metodologia) {
-      const ctx = document.getElementById('resumoChart').getContext('2d');
-      
-      if (currentChart) {
-        currentChart.destroy();
-      }
-      
-      // Categorizar respostas
-      const categories = {
-        'Positivas': 0,
-        'Moderadas': 0,
-        'Negativas': 0
-      };
-      
-      responses.forEach(response => {
-        const score = calculateScore(response, metodologia);
-        if (score >= 4) categories['Positivas']++;
-        else if (score >= 2) categories['Moderadas']++;
-        else categories['Negativas']++;
-      });
-      
-      currentChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: Object.keys(categories),
-          datasets: [{
-            label: 'Respostas',
-            data: Object.values(categories),
-            backgroundColor: ['#4caf50', '#ff9800', '#ef5350'],
-            borderWidth: 2,
-            borderColor: '#fff'
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            title: {
-              display: true,
-              text: 'Distribuição das Respostas',
-              font: {
-                size: 16,
-                weight: 'bold'
-              }
-            },
-            legend: {
-              position: 'bottom',
-              labels: {
-                padding: 20,
-                usePointStyle: true
-              }
-            }
-          }
-        }
-      });
-    }
-
-    function generateRecommendations(riskLevel, metodologia) {
-      const recommendations = {
-        'Baixo': [
-          'Manter as práticas atuais que estão funcionando bem',
-          'Considerar ser um exemplo para outras equipes',
-          'Continuar monitorando o ambiente de trabalho regularmente',
-          'Buscar oportunidades de melhoria contínua'
-        ],
-        'Moderado': [
-          'Implementar melhorias nos pontos identificados como problemáticos',
-          'Realizar treinamentos específicos para gestores',
-          'Criar canais de comunicação mais efetivos',
-          'Estabelecer programas de bem-estar no trabalho',
-          'Revisar processos e procedimentos existentes'
-        ],
-        'Alto': [
-          'Ação imediata necessária para reduzir riscos psicossociais',
-          'Consultar especialistas em saúde ocupacional',
-          'Implementar programa de gestão de estresse',
-          'Revisar completamente a organização do trabalho',
-          'Estabelecer suporte psicológico para funcionários',
-          'Criar comitê de saúde mental no trabalho'
-        ]
-      };
-
-      const metodologiaRecommendations = {
-        'copsoq': [
-          'Revisar demandas de trabalho e autonomia dos funcionários',
-          'Fortalecer o suporte social entre colegas',
-          'Melhorar o equilíbrio trabalho-vida pessoal'
-        ],
-        'hse': [
-          'Clarificar papéis e responsabilidades',
-          'Ajustar cargas de trabalho',
-          'Melhorar suporte gerencial'
-        ],
-        'niosh': [
-          'Implementar programas de reconhecimento',
-          'Melhorar condições físicas do ambiente',
-          'Oferecer recursos de bem-estar'
-        ],
-        'nr': [
-          'Ajustar ergonomia dos postos de trabalho',
-          'Implementar pausas regulares',
-          'Melhorar treinamentos sobre segurança'
-        ]
-      };
-
-      const lista = document.getElementById('recommendationsList');
-      lista.innerHTML = '';
-
-      // Adicionar recomendações gerais
-      recommendations[riskLevel].forEach(rec => {
-        const li = document.createElement('li');
-        li.textContent = rec;
-        lista.appendChild(li);
-      });
-
-      // Adicionar recomendações específicas da metodologia
-      metodologiaRecommendations[metodologia].forEach(rec => {
-        const li = document.createElement('li');
-        li.textContent = rec;
-        lista.appendChild(li);
-      });
-    }
-
-    function exportarRelatorio() {
-      const activeQuestionario = document.querySelector('.questionario.active');
-      const metodologia = document.getElementById('metodologia').value;
-      const metodologiaNome = document.getElementById('metodologia').selectedOptions[0].text;
-      
-      // Coletar dados do relatório
-      const relatorio = {
-        data: new Date().toLocaleDateString('pt-BR'),
-        metodologia: metodologiaNome,
-        totalQuestoes: document.getElementById('totalQuestions').textContent,
-        pontuacao: document.getElementById('positiveScore').textContent,
-        nivelRisco: document.getElementById('riskLevel').textContent,
-        recomendacoes: Array.from(document.querySelectorAll('#recommendationsList li')).map(li => li.textContent)
-      };
-
-      // Criar conteúdo do relatório
-      let conteudo = `RELATÓRIO DE AVALIAÇÃO DE RISCOS PSICOSSOCIAIS\n`;
-      conteudo += `=================================================\n\n`;
-      conteudo += `Data da Avaliação: ${relatorio.data}\n`;
-      conteudo += `Metodologia: ${relatorio.metodologia}\n`;
-      conteudo += `Total de Questões: ${relatorio.totalQuestoes}\n`;
-      conteudo += `Pontuação: ${relatorio.pontuacao}\n`;
-      conteudo += `Nível de Risco: ${relatorio.nivelRisco}\n\n`;
-      conteudo += `RECOMENDAÇÕES:\n`;
-      conteudo += `==============\n`;
-      relatorio.recomendacoes.forEach((rec, index) => {
-        conteudo += `${index + 1}. ${rec}\n`;
-      });
-      conteudo += `\n\nRelatório gerado automaticamente pela ferramenta de Avaliação de Riscos Psicossociais.`;
-
-      // Criar e baixar arquivo
-      const blob = new Blob([conteudo], { type: 'text/plain;charset=utf-8' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = `relatorio_riscos_psicossociais_${new Date().toISOString().split('T')[0]}.txt`;
-      link.click();
-    }
-
-    function resetarAvaliacao() {
-      if (confirm('Tem certeza que deseja iniciar uma nova avaliação? Todos os dados atuais serão perdidos.')) {
-        // Resetar seleção de metodologia
-        document.getElementById('metodologia').selectedIndex = 0;
-        
-        // Ocultar todos os elementos
-        document.querySelectorAll('.questionario').forEach(q => {
-          q.style.display = 'none';
-          q.classList.remove('active');
-        });
-        
-        document.getElementById('dashboard').style.display = 'none';
-        document.getElementById('dashboard').classList.remove('active');
-        document.getElementById('metodologia-info').style.display = 'none';
-        document.getElementById('progress-container').style.display = 'none';
-        
-        // Resetar botão
-        document.getElementById('finalizarBtn').disabled = true;
-        
-        // Destruir gráfico se existir
-        if (currentChart) {
-          currentChart.destroy();
-          currentChart = null;
-        }
-        
-        // Scroll para o topo
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }
-
-    // Inicialização
-    document.addEventListener('DOMContentLoaded', function() {
-      // Adicionar event listeners para melhor acessibilidade
-      document.getElementById('metodologia').addEventListener('change', mostrarQuestionario);
-      
-      // Adicionar suporte para teclas de atalho
-      document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && e.key === 'Enter') {
-          const btn = document.getElementById('finalizarBtn');
-          if (!btn.disabled) {
-            mostrarDashboard();
-          }
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+          <label class="question-title">6. [CHANGE] Quando mudanças são feitas no trabalho, fica claro como funcionarão na
