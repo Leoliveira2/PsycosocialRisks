@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ferramenta de avaliação de riscos psicossociais no ambiente de trabalho">
+  <meta name="keywords" content="riscos psicossociais, COPSOQ, HSE, NIOSH, NR-01, NR-17">
+  <title>Avaliação de Riscos Psicossociais</title>
+  <style>
+    :root {
+      --primary-color: #1565c0;
+      --secondary-color: #42a5f5;
+      --danger-color: #ef5350;
+      --success-color: #4caf50;
+      --warning-color: #ff9800;
+      --background-gradient: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--background-gradient);
+      min-height: 100vh;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      color: var(--primary-color);
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header p {
+      color: #666;
+      font-size: 1.1rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      padding: 30px;
+      margin-bottom: 20px;
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .methodology-selector {
+      margin-bottom: 30px;
+    }
+
+    .methodology-selector label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    select, button {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      transition: var(--transition);
+      background: white;
+    }
+
+    select:focus, button:focus {
+      outline: none;
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 3px rgba(66, 165, 245, 0.2);
+    }
+
+    select:hover {
+      border-color: var(--secondary-color);
+    }
+
+    .questionario {
+      display: none;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .questionario.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .questionario h2 {
+      color: var(--primary-color);
+      margin-bottom: 25px;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .questionnaire-info {
+      color: #666;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .question-group {
+      margin-bottom: 20px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid var(--secondary-color);
+    }
+
+    .question-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+    }
+
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      padding: 12px 15px;
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-bottom: 0;
+    }
+
+    .radio-option:hover {
+      border-color: var(--secondary-color);
+      background: #f8f9fa;
+      transform: translateX(5px);
+    }
+
+    .radio-option input[type="radio"] {
+      margin-right: 12px;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    .radio-option input[type="radio"]:checked + .radio-text {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .radio-option:has(input[type="radio"]:checked) {
+      border-color: var(--primary-color);
+      background: rgba(21, 101, 192, 0.05);
+      box-shadow: 0 2px 8px rgba(21, 101, 192, 0.1);
+    }
+
+    .radio-text {
+      font-size: 16px;
+      color: #333;
+      flex: 1;
+      line-height: 1.4;
+    }
+
+    .btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn:hover {
+      background: #0d47a1;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(21, 101, 192, 0.3);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .version-selector {
+      margin-bottom: 30px;
+      display: none;
+    }
+
+    .version-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .version-option {
+      cursor: pointer;
+      margin: 0;
+    }
+
+    .version-option input[type="radio"] {
+      display: none;
+    }
+
+    .version-card {
+      padding: 20px;
+      border: 2px solid #e0e0e0;
+      border-radius: var(--border-radius);
+      background: white;
+      transition: var(--transition);
+      text-align: center;
+      height: 100%;
+    }
+
+    .version-card h4 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .version-card p {
+      margin: 5px 0;
+      font-size: 0.9rem;
+    }
+
+    .version-option input[type="radio"]:checked + .version-card {
+      border-color: var(--primary-color);
+      background: rgba(21, 101, 192, 0.05);
+      box-shadow: 0 4px 15px rgba(21, 101, 192, 0.2);
+    }
+
+    .version-card:hover {
+      border-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      background: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--secondary-color);
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+
+    #dashboard {
+      display: none;
+    }
+
+    #dashboard.active {
+      display: block;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .dashboard-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .dashboard-header h2 {
+      color: var(--primary-color);
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 20px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      text-align: center;
+      border-top: 4px solid var(--secondary-color);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      color: #666;
+      font-weight: 500;
+    }
+
+    .chart-container {
+      position: relative;
+      height: 400px;
+      margin-top: 20px;
+    }
+
+    .recommendations {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: var(--border-radius);
+      border-left: 4px solid var(--warning-color);
+    }
+
+    .recommendations h3 {
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .recommendations ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .recommendations li {
+      padding: 10px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .recommendations li:last-child {
+      border-bottom: none;
+    }
+
+    .recommendations li::before {
+      content: "💡";
+      margin-right: 10px;
+    }
+
+    .export-btn {
+      background: var(--success-color);
+      margin-top: 20px;
+    }
+
+    .export-btn:hover {
+      background: #388e3c;
+    }
+
+    .reset-btn {
+      background: var(--danger-color);
+      margin-left: 10px;
+    }
+
+    .reset-btn:hover {
+      background: #d32f2f;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 10px;
+      }
+      
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .card {
+        padding: 20px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .btn {
+        padding: 12px 20px;
+        font-size: 14px;
+      }
+      
+      .radio-option {
+        padding: 10px 12px;
+      }
+      
+      .radio-text {
+        font-size: 14px;
+      }
+      
+      .question-title {
+        font-size: 1rem;
+      }
+      
+      .version-options {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      
+      .header h1 {
+        font-size: 1.5rem;
+      }
+      
+      .card {
+        padding: 15px;
+      }
+      
+      .radio-option {
+        padding: 8px 10px;
+      }
+      
+      .radio-text {
+        font-size: 13px;
+      }
+      
+      .question-title {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>🧠 Avaliação de Riscos Psicossociais</h1>
+      <p>Ferramenta completa para análise do ambiente de trabalho</p>
+    </header>
+
+    <main>
+      <div class="card methodology-selector">
+        <label for="metodologia">Escolha a metodologia de avaliação:</label>
+        <select id="metodologia" onchange="mostrarQuestionario()" aria-label="Selecionar metodologia">
+          <option value="">-- Selecione uma metodologia --</option>
+          <option value="copsoq">🧠 COPSOQ III Short - Questionário Psicossocial</option>
+          <option value="hse">📊 HSE Indicator Tool - Indicadores de Estresse</option>
+          <option value="niosh">🏥 NIOSH WellBQ - Bem-estar no Trabalho</option>
+          <option value="nr">📋 NR-01 e NR-17 - Normas Regulamentadoras</option>
+        </select>
+        
+        <div id="metodologia-info" class="methodology-info" style="display: none;">
+          <p id="metodologia-descricao"></p>
+        </div>
+      </div>
+
+      <div id="version-selector" class="card version-selector">
+        <label>Escolha o tipo de avaliação:</label>
+        <div class="version-options">
+          <label class="version-option">
+            <input type="radio" name="version_type" value="rapida" onchange="updateVersionInfo()">
+            <div class="version-card">
+              <h4>⚡ Triagem Rápida</h4>
+              <p><strong>5-6 questões</strong></p>
+              <p>Avaliação inicial e rápida</p>
+              <p>Tempo: 3-5 minutos</p>
+            </div>
+          </label>
+          <label class="version-option">
+            <input type="radio" name="version_type" value="completa" onchange="updateVersionInfo()">
+            <div class="version-card">
+              <h4>📋 Avaliação Completa</h4>
+              <p><strong>18-24 questões</strong></p>
+              <p>Análise detalhada e abrangente</p>
+              <p>Tempo: 10-15 minutos</p>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="progress-bar" id="progress-container" style="display: none;">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+
+      <!-- COPSOQ III Short - Versão Rápida -->
+      <div id="copsoq-rapida" class="questionario card">
+        <h2>🧠 COPSOQ III Short - Triagem Rápida</h2>
+        <p class="questionnaire-info">5 questões essenciais baseadas no questionário oficial internacional</p>
+        
+        <div class="question-group">
+          <label class="question-title">1. Com que frequência você não tem tempo suficiente para completar todas as suas tarefas de trabalho?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q1" value="4" onchange="updateProgress()">
+              <span class="radio-text">Sempre</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q1" value="3" onchange="updateProgress()">
+              <span class="radio-text">Frequentemente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q1" value="2" onchange="updateProgress()">
+              <span class="radio-text">Às vezes</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q1" value="1" onchange="updateProgress()">
+              <span class="radio-text">Raramente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q1" value="0" onchange="updateProgress()">
+              <span class="radio-text">Nunca</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-group">
+          <label class="question-title">2. Você tem um alto grau de influência nas decisões relacionadas ao seu trabalho?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q2" value="4" onchange="updateProgress()">
+              <span class="radio-text">Em grande medida</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q2" value="3" onchange="updateProgress()">
+              <span class="radio-text">Em boa medida</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q2" value="2" onchange="updateProgress()">
+              <span class="radio-text">De alguma forma</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q2" value="1" onchange="updateProgress()">
+              <span class="radio-text">Em pequena medida</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q2" value="0" onchange="updateProgress()">
+              <span class="radio-text">Muito pouco</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-group">
+          <label class="question-title">3. Com que frequência você recebe ajuda e apoio do seu supervisor imediato, quando necessário?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q3" value="4" onchange="updateProgress()">
+              <span class="radio-text">Sempre</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q3" value="3" onchange="updateProgress()">
+              <span class="radio-text">Frequentemente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q3" value="2" onchange="updateProgress()">
+              <span class="radio-text">Às vezes</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q3" value="1" onchange="updateProgress()">
+              <span class="radio-text">Raramente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q3" value="0" onchange="updateProgress()">
+              <span class="radio-text">Nunca</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-group">
+          <label class="question-title">4. Com que frequência você recebe ajuda e apoio dos seus colegas, quando necessário?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q4" value="4" onchange="updateProgress()">
+              <span class="radio-text">Sempre</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q4" value="3" onchange="updateProgress()">
+              <span class="radio-text">Frequentemente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q4" value="2" onchange="updateProgress()">
+              <span class="radio-text">Às vezes</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q4" value="1" onchange="updateProgress()">
+              <span class="radio-text">Raramente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q4" value="0" onchange="updateProgress()">
+              <span class="radio-text">Nunca</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-group">
+          <label class="question-title">5. Seu trabalho é significativo para você?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q5" value="4" onchange="updateProgress()">
+              <span class="radio-text">Em grande medida</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q5" value="3" onchange="updateProgress()">
+              <span class="radio-text">Em boa medida</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q5" value="2" onchange="updateProgress()">
+              <span class="radio-text">De alguma forma</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q5" value="1" onchange="updateProgress()">
+              <span class="radio-text">Em pequena medida</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="copsoq_q5" value="0" onchange="updateProgress()">
+              <span class="radio-text">Muito pouco</span>
+            </label>
+          </div>
+        </div>
+
+        <button class="btn" onclick="calcularResultados('copsoq-rapida')">Calcular Resultados</button>
+      </div>
+
+      <!-- HSE Indicator Tool - Versão Rápida -->
+      <div id="hse-rapida" class="questionario card">
+        <h2>📊 HSE Indicator Tool - Triagem Rápida</h2>
+        <p class="questionnaire-info">6 questões essenciais (1 por domínio) baseadas no questionário oficial britânico</p>
+        
+        <div class="question-group">
+          <label class="question-title">1. [DEMANDS] Eu tenho prazos irreais para cumprir</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="hse_q1" value="0" onchange="updateProgress()">
+              <span class="radio-text">Sempre</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q1" value="1" onchange="updateProgress()">
+              <span class="radio-text">Frequentemente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q1" value="2" onchange="updateProgress()">
+              <span class="radio-text">Às vezes</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q1" value="3" onchange="updateProgress()">
+              <span class="radio-text">Raramente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q1" value="4" onchange="updateProgress()">
+              <span class="radio-text">Nunca</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-group">
+          <label class="question-title">2. [CONTROL] Eu posso decidir quando fazer uma pausa</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="hse_q2" value="4" onchange="updateProgress()">
+              <span class="radio-text">Sempre</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q2" value="3" onchange="updateProgress()">
+              <span class="radio-text">Frequentemente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q2" value="2" onchange="updateProgress()">
+              <span class="radio-text">Às vezes</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q2" value="1" onchange="updateProgress()">
+              <span class="radio-text">Raramente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q2" value="0" onchange="updateProgress()">
+              <span class="radio-text">Nunca</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-group">
+          <label class="question-title">3. [SUPPORT] Se o trabalho ficar difícil, meus colegas me ajudam</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="hse_q3" value="4" onchange="updateProgress()">
+              <span class="radio-text">Sempre</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q3" value="3" onchange="updateProgress()">
+              <span class="radio-text">Frequentemente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q3" value="2" onchange="updateProgress()">
+              <span class="radio-text">Às vezes</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q3" value="1" onchange="updateProgress()">
+              <span class="radio-text">Raramente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q3" value="0" onchange="updateProgress()">
+              <span class="radio-text">Nunca</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-group">
+          <label class="question-title">4. [RELATIONSHIPS] Existe tensão ou raiva entre os colegas</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="hse_q4" value="0" onchange="updateProgress()">
+              <span class="radio-text">Sempre</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q4" value="1" onchange="updateProgress()">
+              <span class="radio-text">Frequentemente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q4" value="2" onchange="updateProgress()">
+              <span class="radio-text">Às vezes</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q4" value="3" onchange="updateProgress()">
+              <span class="radio-text">Raramente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q4" value="4" onchange="updateProgress()">
+              <span class="radio-text">Nunca</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-group">
+          <label class="question-title">5. [ROLE] Está claro para mim quais são meus deveres e responsabilidades</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="hse_q5" value="4" onchange="updateProgress()">
+              <span class="radio-text">Concordo totalmente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q5" value="3" onchange="updateProgress()">
+              <span class="radio-text">Concordo</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q5" value="2" onchange="updateProgress()">
+              <span class="radio-text">Neutro</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q5" value="1" onchange="updateProgress()">
+              <span class="radio-text">Discordo</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q5" value="0" onchange="updateProgress()">
+              <span class="radio-text">Discordo totalmente</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-group">
+          <label class="question-title">6. [CHANGE] Quando mudanças são feitas no trabalho, fica claro como funcionarão na
+ prática</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="hse_q6" value="4" onchange="updateProgress()">
+              <span class="radio-text">Concordo totalmente</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q6" value="3" onchange="updateProgress()">
+              <span class="radio-text">Concordo</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q6" value="2" onchange="updateProgress()">
+              <span class="radio-text">Neutro</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q6" value="1" onchange="updateProgress()">
+              <span class="radio-text">Discordo</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hse_q6" value="0" onchange="updateProgress()">
+              <span class="radio-text">Discordo totalmente</span>
+            </label>
+          </div>
+        </div>
+
+        <button class="btn" onclick="calcularResultados('hse-rapida')">Calcular Resultados</button>
+      </div>
+
+      <!-- Dashboard de Resultados -->
+      <div id="dashboard" class="card">
+        <div class="dashboard-header">
+          <h2>📊 Resultados da Avaliação</h2>
+          <p id="dashboard-subtitle"></p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number" id="stat-score">0</div>
+            <div class="stat-label">Pontuação Total</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="stat-percentage">0%</div>
+            <div class="stat-label">Percentual</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="stat-level">-</div>
+            <div class="stat-label">Nível de Risco</div>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <canvas id="resultsChart"></canvas>
+        </div>
+
+        <div class="recommendations">
+          <h3>💡 Recomendações</h3>
+          <ul id="recommendations-list"></ul>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+          <button class="btn export-btn" onclick="exportarResultados()">📥 Exportar Relatório</button>
+          <button class="btn reset-btn" onclick="resetarAvaliacao()">🔄 Nova Avaliação</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    let currentMethodology = '';
+    let currentVersion = '';
+    let chartInstance = null;
+
+    function mostrarQuestionario() {
+      const metodologia = document.getElementById('metodologia').value;
+      currentMethodology = metodologia;
+      
+      // Esconder todos os questionários
+      document.querySelectorAll('.questionario').forEach(q => {
+        q.classList.remove('active');
+      });
+      
+      // Esconder dashboard
+      document.getElementById('dashboard').classList.remove('active');
+      
+      // Resetar seleção de versão
+      document.querySelectorAll('input[name="version_type"]').forEach(input => {
+        input.checked = false;
+      });
+      
+      if (metodologia) {
+        // Mostrar seletor de versão
+        document.getElementById('version-selector').style.display = 'block';
+        
+        // Atualizar descrição da metodologia
+        const descricoes = {
+          'copsoq': 'O COPSOQ III (Copenhagen Psychosocial Questionnaire) é um instrumento internacional validado para avaliar riscos psicossociais no trabalho.',
+          'hse': 'O HSE Indicator Tool é desenvolvido pelo Health and Safety Executive do Reino Unido para avaliar seis áreas-chave de estresse no trabalho.',
+          'niosh': 'O NIOSH WellBQ avalia o bem-estar no trabalho através de múltiplas dimensões da saúde ocupacional.',
+          'nr': 'Avaliação baseada nas Normas Regulamentadoras brasileiras NR-01 (Gerenciamento de Riscos) e NR-17 (Ergonomia).'
+        };
+        
+        document.getElementById('metodologia-info').style.display = 'block';
+        document.getElementById('metodologia-descricao').textContent = descricoes[metodologia];
+      } else {
+        document.getElementById('version-selector').style.display = 'none';
+        document.getElementById('metodologia-info').style.display = 'none';
+        document.getElementById('progress-container').style.display = 'none';
+      }
+    }
+
+    function updateVersionInfo() {
+      const versionType = document.querySelector('input[name="version_type"]:checked');
+      
+      if (versionType && currentMethodology) {
+        const questionarioId = `${currentMethodology}-${versionType.value}`;
+        
+        // Esconder todos os questionários
+        document.querySelectorAll('.questionario').forEach(q => {
+          q.classList.remove('active');
+        });
+        
+        // Mostrar questionário selecionado
+        const questionario = document.getElementById(questionarioId);
+        if (questionario) {
+          questionario.classList.add('active');
+          document.getElementById('progress-container').style.display = 'block';
+          currentVersion = versionType.value;
+          updateProgress();
+          
+          // Scroll suave para o questionário
+          setTimeout(() => {
+            questionario.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+    }
+
+    function updateProgress() {
+      if (!currentMethodology || !currentVersion) return;
+      
+      const questionarioId = `${currentMethodology}-${currentVersion}`;
+      const questionario = document.getElementById(questionarioId);
+      
+      if (!questionario) return;
+      
+      const totalQuestions = questionario.querySelectorAll('.question-group').length;
+      const answeredQuestions = questionario.querySelectorAll('input[type="radio"]:checked').length;
+      
+      const progress = (answeredQuestions / totalQuestions) * 100;
+      document.getElementById('progress-fill').style.width = progress + '%';
+      
+      // Habilitar botão de calcular se todas as questões foram respondidas
+      const calcButton = questionario.querySelector('.btn');
+      if (calcButton) {
+        calcButton.disabled = answeredQuestions < totalQuestions;
+      }
+    }
+
+    function calcularResultados(questionarioId) {
+      const questionario = document.getElementById(questionarioId);
+      const inputs = questionario.querySelectorAll('input[type="radio"]:checked');
+      
+      let totalScore = 0;
+      let maxScore = 0;
+      
+      inputs.forEach(input => {
+        totalScore += parseInt(input.value);
+      });
+      
+      // Calcular pontuação máxima baseada no número de questões
+      const totalQuestions = questionario.querySelectorAll('.question-group').length;
+      maxScore = totalQuestions * 4; // Assumindo escala de 0-4
+      
+      const percentage = (totalScore / maxScore) * 100;
+      
+      // Determinar nível de risco
+      let riskLevel = '';
+      let riskColor = '';
+      
+      if (percentage >= 75) {
+        riskLevel = 'Baixo';
+        riskColor = 'var(--success-color)';
+      } else if (percentage >= 50) {
+        riskLevel = 'Moderado';
+        riskColor = 'var(--warning-color)';
+      } else if (percentage >= 25) {
+        riskLevel = 'Alto';
+        riskColor = 'var(--danger-color)';
+      } else {
+        riskLevel = 'Crítico';
+        riskColor = '#c62828';
+      }
+      
+      // Atualizar dashboard
+      document.getElementById('stat-score').textContent = totalScore;
+      document.getElementById('stat-percentage').textContent = percentage.toFixed(1) + '%';
+      document.getElementById('stat-level').textContent = riskLevel;
+      document.getElementById('stat-level').style.color = riskColor;
+      
+      const metodologiaNames = {
+        'copsoq': 'COPSOQ III Short',
+        'hse': 'HSE Indicator Tool',
+        'niosh': 'NIOSH WellBQ',
+        'nr': 'NR-01 e NR-17'
+      };
+      
+      document.getElementById('dashboard-subtitle').textContent = 
+        `Metodologia: ${metodologiaNames[currentMethodology]} - ${currentVersion === 'rapida' ? 'Triagem Rápida' : 'Avaliação Completa'}`;
+      
+      // Gerar recomendações
+      gerarRecomendacoes(riskLevel, currentMethodology);
+      
+      // Criar gráfico
+      criarGrafico(totalScore, maxScore, riskLevel);
+      
+      // Mostrar dashboard
+      document.getElementById('dashboard').classList.add('active');
+      
+      // Esconder questionário
+      questionario.classList.remove('active');
+      
+      // Scroll para dashboard
+      setTimeout(() => {
+        document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+
+    function gerarRecomendacoes(riskLevel, methodology) {
+      const recommendationsList = document.getElementById('recommendations-list');
+      recommendationsList.innerHTML = '';
+      
+      const recomendacoes = {
+        'Baixo': [
+          'Manter as práticas atuais de gestão de riscos psicossociais',
+          'Realizar avaliações periódicas para monitoramento contínuo',
+          'Compartilhar boas práticas com outras áreas da organização',
+          'Considerar programas de reconhecimento e valorização dos colaboradores'
+        ],
+        'Moderado': [
+          'Implementar ações preventivas para evitar agravamento dos riscos',
+          'Realizar reuniões regulares de feedback com a equipe',
+          'Revisar processos de trabalho e distribuição de demandas',
+          'Oferecer treinamentos sobre gestão de estresse e bem-estar',
+          'Estabelecer canais de comunicação mais efetivos'
+        ],
+        'Alto': [
+          'Ação imediata necessária para redução dos riscos identificados',
+          'Realizar diagnóstico detalhado com avaliação completa',
+          'Implementar programa estruturado de gestão de riscos psicossociais',
+          'Oferecer suporte psicológico aos colaboradores',
+          'Revisar carga de trabalho e prazos',
+          'Melhorar comunicação e apoio da liderança'
+        ],
+        'Crítico': [
+          'ATENÇÃO: Situação crítica requer intervenção urgente',
+          'Realizar avaliação completa imediatamente',
+          'Implementar medidas emergenciais de proteção',
+          'Disponibilizar suporte psicológico profissional',
+          'Revisar completamente a organização do trabalho',
+          'Envolver alta gestão e recursos humanos',
+          'Considerar afastamento temporário de colaboradores em risco',
+          'Desenvolver plano de ação detalhado com prazos definidos'
+        ]
+      };
+      
+      const lista = recomendacoes[riskLevel] || [];
+      lista.forEach(rec => {
+        const li = document.createElement('li');
+        li.textContent = rec;
+        recommendationsList.appendChild(li);
+      });
+    }
+
+    function criarGrafico(score, maxScore, riskLevel) {
+      const ctx = document.getElementById('resultsChart').getContext('2d');
+      
+      // Destruir gráfico anterior se existir
+      if (chartInstance) {
+        chartInstance.destroy();
+      }
+      
+      const percentage = (score / maxScore) * 100;
+      const remaining = 100 - percentage;
+      
+      let backgroundColor = '';
+      if (riskLevel === 'Baixo') backgroundColor = 'rgba(76, 175, 80, 0.8)';
+      else if (riskLevel === 'Moderado') backgroundColor = 'rgba(255, 152, 0, 0.8)';
+      else if (riskLevel === 'Alto') backgroundColor = 'rgba(239, 83, 80, 0.8)';
+      else backgroundColor = 'rgba(198, 40, 40, 0.8)';
+      
+      chartInstance = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Pontuação Obtida', 'Pontuação Restante'],
+          datasets: [{
+            data: [percentage, remaining],
+            backgroundColor: [backgroundColor, 'rgba(224, 224, 224, 0.5)'],
+            borderWidth: 2,
+            borderColor: '#fff'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                padding: 20,
+                font: {
+                  size: 14
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: `Nível de Risco: ${riskLevel}`,
+              font: {
+                size: 18,
+                weight: 'bold'
+              },
+              padding: 20
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ': ' + context.parsed.toFixed(1) + '%';
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function exportarResultados() {
+      const score = document.getElementById('stat-score').textContent;
+      const percentage = document.getElementById('stat-percentage').textContent;
+      const level = document.getElementById('stat-level').textContent;
+      const subtitle = document.getElementById('dashboard-subtitle').textContent;
+      
+      const recommendations = [];
+      document.querySelectorAll('#recommendations-list li').forEach(li => {
+        recommendations.push(li.textContent);
+      });
+      
+      const reportContent = `
+RELATÓRIO DE AVALIAÇÃO DE RISCOS PSICOSSOCIAIS
+=============================================
+
+${subtitle}
+Data: ${new Date().toLocaleDateString('pt-BR')}
+
+RESULTADOS
+----------
+Pontuação Total: ${score}
+Percentual: ${percentage}
+Nível de Risco: ${level}
+
+RECOMENDAÇÕES
+-------------
+${recommendations.map((rec, i) => `${i + 1}. ${rec}`).join('\n')}
+
+---
+Relatório gerado pela Ferramenta de Avaliação de Riscos Psicossociais
+`;
+      
+      const blob = new Blob([reportContent], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `relatorio_riscos_psicossociais_${new Date().getTime()}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function resetarAvaliacao() {
+      // Resetar seleções
+      document.getElementById('metodologia').value = '';
+      document.querySelectorAll('input[type="radio"]').forEach(input => {
+        input.checked = false;
+      });
+      
+      // Esconder elementos
+      document.getElementById('version-selector').style.display = 'none';
+      document.getElementById('metodologia-info').style.display = 'none';
+      document.getElementById('progress-container').style.display = 'none';
+      document.getElementById('dashboard').classList.remove('active');
+      document.querySelectorAll('.questionario').forEach(q => {
+        q.classList.remove('active');
+      });
+      
+      // Resetar variáveis
+      currentMethodology = '';
+      currentVersion = '';
+      
+      // Scroll para o topo
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Aplicação de Avaliação de Riscos Psicossociais carregada com sucesso!');
+    });
+  </script>
+</body>
+</html>
